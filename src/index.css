@@ -25,9 +25,14 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
+}
+
+#root{
+  width: 100%;
+  background-color: #f8f9fb;
+  z-index: 0;
 }
 
 h1 {

@@ -1,0 +1,11 @@
+.header {
+    background-color: #764abc;
+    height: 70px;
+}
+
+.header div{
+    display: flex;
+    justify-content: end;
+    padding-top: 8px;
+    margin-right: 12px;
+}

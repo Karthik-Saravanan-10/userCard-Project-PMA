@@ -1,0 +1,11 @@
+.card-main{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card-container{
+    background-color: white;
+    width: fit-content;
+    height: fit-content;
+    padding: 10px;
+}

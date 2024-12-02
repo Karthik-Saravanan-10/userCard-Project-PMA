@@ -1,0 +1,38 @@
+.container{
+    margin: 7% 22%;
+    border: 1px solid black;
+    border-radius: 8px;
+    z-index: 100;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.container section{
+    display: flex;
+    gap: 40px;
+    padding: 50px 48px;
+}
+
+.form-input{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-bottom: 25px;
+}
+
+.action-div{
+    float: right;
+    margin-top: -65px;
+    margin-right: 57px;
+}
+
+.alert-p{
+    color: #d32f2f;
+    margin: 0;
+    font-size: 10px;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-size: 0.75rem;
+    line-height: 1.66;
+    letter-spacing: 0.03333em;
+    text-align: left;
+}
