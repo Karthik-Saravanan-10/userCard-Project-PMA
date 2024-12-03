@@ -3,7 +3,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Formdata from "./components/pages/FormData";
 import Header from "./components/routers/Header";
 import Userlist from "./components/routers/Userlist";
-// import { sendtoData } from "./components/pages/FormData";
+import Update from "./components/routers/Update";
+
 
 function App() {
   let router = createBrowserRouter([
@@ -13,6 +14,7 @@ function App() {
       children: [
         { path: "/", element: <Userlist /> },
         { path: "/form", element: <Formdata />},
+        {path:'update',element:<Update/>}
       ],
     },
   ]);

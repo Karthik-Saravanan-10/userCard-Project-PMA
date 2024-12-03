@@ -1,6 +1,6 @@
 import { Button, Card, CardContent, Stack } from "@mui/material";
 
-function Alert({ setremoveClick, redirectHandler }) {
+function Alert({ setremoveClick, redirectHandler, elementName }) {
   function clearHandler() {
     setremoveClick(false);
     redirectHandler(true);
@@ -14,12 +14,12 @@ function Alert({ setremoveClick, redirectHandler }) {
   return (
     <>
       <div className="contain">
-        <Card sx={{ maxWidth: "250px" }}>
+        <Card sx={{ maxWidth: "370px", background: "black", color: "white" }}>
           <CardContent>
-            <p>Are you sure delete the card?</p>
+            <p>Are you want to delete {elementName}'s card?</p>
             <Stack
               direction={"row"}
-              sx={{ gap: "30px", justifyContent: "center" }}
+              sx={{ gap: "30px", justifyContent: "center", mt: "20px " }}
             >
               <Button variant="outlined" onClick={clearHandler}>
                 Yes

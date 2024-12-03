@@ -1,17 +1,29 @@
 import { Button } from "@mui/material";
 import "./userview.css";
 import dataContainer from "../helperFiles/data";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Alert from "./Alert";
+import DataCtx from "../store/dataContainer";
+import { useNavigate } from "react-router-dom";
 
 function Userview({ element, setremove }) {
   let [removeClick, setremoveClick] = useState(false);
+  let navigate = useNavigate();
 
   useEffect(() => {}, [removeClick]);
+
+  let getDataCtx = useContext(DataCtx);
 
   function removeHandler() {
     setremoveClick(true);
     console.log(dataContainer);
+  }
+
+  async function editHandler() {
+    console.log(getDataCtx);
+    getDataCtx.addHandler(element);
+    await navigate('/update');
+    redirectHandler(true);
   }
 
   function redirectHandler(data) {
@@ -34,10 +46,14 @@ function Userview({ element, setremove }) {
           <p>{element.gender}</p>
           <p>{element.dob}</p>
           <p>{element.age}</p>
-          <p>Experience</p>
+          <p>{element.experience}</p>
           <p>{element.detail}</p>
           <div className="userview-btn">
-            <Button variant="contained" sx={{ width: "100px" }}>
+            <Button
+              variant="contained"
+              sx={{ width: "100px" }}
+              onClick={editHandler}
+            >
               Edit
             </Button>
             <Button variant="outlined" onClick={removeHandler}>
@@ -50,6 +66,7 @@ function Userview({ element, setremove }) {
             <Alert
               setremoveClick={setremoveClick}
               redirectHandler={redirectHandler}
+              elementName={element.name}
             />
           ) : (
             ""

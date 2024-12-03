@@ -28,21 +28,23 @@ export function checkEmail(data, valid) {
 }
 
 export function checkDob(data, valid) {
-  let PresentDate = new Date();
-  let getdateData = new Date(data.split("-"));
-  let ageValue = PresentDate - getdateData;
-  let yr = 1000 * 60 * 60 * 24 * 365;
-  // console.log(ageValue/yr)
-  let getAge = Math.floor(ageValue / yr);
   if (!data) {
     valid(true);
     return false;
-  } else if ((getAge < 0)) {
-    valid(true);
-    return false;
   } else {
-    valid(false);
-    return true;
+    let PresentDate = new Date();
+    let getdateData = new Date(data.split("-"));
+    let ageValue = PresentDate - getdateData;
+    let yr = 1000 * 60 * 60 * 24 * 365;
+    // console.log(ageValue/yr)
+    let getAge = Math.floor(ageValue / yr);
+    if (getAge < 0) {
+      valid(true);
+      return false;
+    } else {
+      valid(false);
+      return true;
+    }
   }
 }
 

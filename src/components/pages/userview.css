@@ -23,5 +23,6 @@
 .Alert-div{
     z-index: 1;
     position: absolute;
-    transform: translate(41px, 229%);
+    min-height: 200%;
+    left: 40%;
 }
