@@ -15,14 +15,14 @@ function Header() {
           <Stack direction="row" spacing={2}>
             <NavLink to="/">
               <Button
-                variant="outline"
+                variant="outlined"
                 sx={{ color: "white" }}
                 startIcon={<ViewCarouselOutlinedIcon />}
               >
                 View Cards
               </Button>
             </NavLink>
-            <NavLink to='/form'>
+            <NavLink to="/form">
               <Button
                 variant="contained"
                 startIcon={<PersonAddAltOutlinedIcon />}

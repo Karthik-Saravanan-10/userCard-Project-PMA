@@ -21,10 +21,14 @@ import {
   checkDob,
   checkEmail,
   checkName,
-} from "../validation.js";
+} from "../helperFiles/validation.js";
+import dataContainer from '../helperFiles/data.js'
+import { useNavigate } from "react-router-dom";
 
 function Formdata() {
   let userId = useId();
+  const navigate=useNavigate();
+
   let [getName, setName] = useState("");
   let [getNamevalid, setNameValid] = useState(false);
 
@@ -53,16 +57,31 @@ function Formdata() {
     }
   });
 
-  function submitHandler(e) {
+  async function submitHandler(e) {
     e.preventDefault();
+    let age=checkAge(getDob);
     //console.log("out",validation())
     if (!validation()) {
       console.log("err");
       setForm(true);
       console.log(validation());
     } else {
-      console.log(validation());
       console.log("sucess");
+      let actionData = await {
+        id: userId,
+        name: getName,
+        job: getJob,
+        email: getEmail,
+        dob: getDob,
+        age: age,
+        gender: getgender,
+        detail: getDetail,
+      };
+
+      await dataContainer.push(actionData);
+      navigate('/')
+      console.log(actionData);
+      
     }
   }
 
@@ -81,6 +100,7 @@ function Formdata() {
         valid = false;
         break;
       } else {
+        setAge(checkAge(getDob));
         valid = true;
       }
     }
@@ -101,6 +121,7 @@ function Formdata() {
                 name="nameData"
                 label="Name"
                 variant="outlined"
+                value={getName}
                 onChange={(e) => setName(e.target.value)}
                 helperText={
                   getNamevalid ? "Enter Valid Name/Only Alphabates" : false
@@ -117,6 +138,7 @@ function Formdata() {
                 type="date"
                 InputLabelProps={{ shrink: true, required: true }}
                 sx={{ width: "223px" }}
+                value={getDob}
                 onChange={(e) => setDob(e.target.value)}
                 helperText={getDobvalid ? "Enter Date of Birth" : false}
                 error={getDobvalid}
@@ -154,6 +176,7 @@ function Formdata() {
                 label="Profession"
                 variant="outlined"
                 onChange={(e) => setJob(e.target.value)}
+                value={getJob}
                 helperText={
                   getJobvalid ? "Enter Valid Pattern/Only Alphabets" : false
                 }
@@ -178,7 +201,7 @@ function Formdata() {
                   labelId="experience"
                   id="select"
                   label="experience"
-                  defaultValue={1}
+                  defaultValue={""}
                 >
                   <MenuItem value={10}>1</MenuItem>
                   <MenuItem value={20}>2</MenuItem>
@@ -199,6 +222,7 @@ function Formdata() {
                 type="email"
                 sx={{ width: "223px" }}
                 onChange={(e) => setEmail(e.target.value)}
+                value={getEmail}
                 helperText={getEmailvalid ? "Enter Valid Email" : false}
                 error={getEmailvalid}
               />
@@ -212,6 +236,7 @@ function Formdata() {
                 rows={5}
                 sx={{ width: "225px" }}
                 onChange={(e) => setDetail(e.target.value)}
+                value={getDetail}
                 helperText={
                   getDetailvalid
                     ? "should be more than 10 words and less than 200 words"
