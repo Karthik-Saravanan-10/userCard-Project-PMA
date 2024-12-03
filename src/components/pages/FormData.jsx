@@ -24,7 +24,8 @@ import {
 import dataContainer from "../helperFiles/data.js";
 import { useNavigate } from "react-router-dom";
 import DataCtx from "../store/dataContainer.jsx";
-import Alert from './Alert.jsx'
+import Alert from "./Alert.jsx";
+import UpdateConfirm from "./UpdateConfirm.jsx";
 
 function Formdata(props) {
   let userId = useId();
@@ -54,6 +55,8 @@ function Formdata(props) {
 
   let [selectBox, setSelect] = useState("");
 
+  let [updateBtn, setupdate] = useState(false);
+  let [prevCheck, setprev] = useState(false);
   let [formChange, setForm] = useState(false);
 
   useEffect(() => {
@@ -72,24 +75,27 @@ function Formdata(props) {
       setForm(true);
       console.log(validation());
     } else {
-      console.log("sucess", dataArrCtx);
-      let age = checkAge(getDob || props.dob);
-      dataArrCtx.data.splice(0, 2);
-      let actionData = await {
-        id: userId,
-        name: getName || props.name,
-        job: getJob || props.job,
-        email: getEmail || props.email,
-        dob: getDob || props.dob,
-        age: age,
-        gender: getgender || props.gender,
-        experience: selectBox || props.experience,
-        detail: getDetail || props.detail,
-      };
-
-      await dataContainer.push(actionData);
-      navigate("/");
-      console.log(actionData);
+      setprev(Boolean(props.name));
+      let bool = Boolean(updateBtn) || !Boolean(props.name);
+      if (bool) {
+        console.log("sucess", dataArrCtx);
+        let age = checkAge(getDob || props.dob);
+        dataArrCtx.data.splice(0, 2);
+        let actionData = await {
+          id: userId,
+          name: getName || props.name,
+          job: getJob || props.job,
+          email: getEmail || props.email,
+          dob: getDob || props.dob,
+          age: age,
+          gender: getgender || props.gender,
+          experience: selectBox || props.experience,
+          detail: getDetail || props.detail,
+        };
+        await dataContainer.push(actionData);
+        navigate("/");
+        console.log(actionData);
+      }
     }
   }
 
@@ -217,6 +223,7 @@ function Formdata(props) {
                     onChange={(e) => setSelect(e.target.value)}
                     defaultValue={!selectBox ? props.experience : ""}
                   >
+                    <MenuItem value={"Fresher"}>Fresher</MenuItem>
                     <MenuItem value={1}>1</MenuItem>
                     <MenuItem value={2}>2</MenuItem>
                     <MenuItem value={3}>3</MenuItem>
@@ -267,7 +274,7 @@ function Formdata(props) {
             </div>
           </section>
 
-          <div className="form-input action-div">
+          <div className=" action-div">
             <Button
               variant="contained"
               type="submit"
@@ -276,8 +283,10 @@ function Formdata(props) {
             >
               {props.name ? "Update" : "Submit"}
             </Button>
+            {updateBtn?<p className="upadte-p">Now click for Update</p>:""}
           </div>
         </form>
+        {prevCheck ? <UpdateConfirm setprev={setprev} setupdate={setupdate} /> : ""}
       </main>
     </>
   );

@@ -1,5 +1,5 @@
 .container{
-    margin: 3% 22%;
+    margin: 0 21%;
     border: 1px solid black;
     border-radius: 8px;
     z-index: 100;
@@ -10,7 +10,7 @@
 .container section{
     display: flex;
     gap: 40px;
-    padding: 50px 48px;
+    padding: 42px 48px 65px 48px;
 }
 
 .form-input{
@@ -22,8 +22,9 @@
 
 .action-div{
     float: right;
-    margin-top: -65px;
-    margin-right: 57px;
+    margin-top: -88px;
+    margin-right: 78px;
+    width: fit-content;
 }
 
 .alert-p{
@@ -40,4 +41,16 @@
 .userlist-h1{
     margin: 20px 0;
     text-align: center;
+}
+
+.contain{
+    position: absolute;
+    text-align: center;
+    margin: -17% 19%;
+    width: 345px;
+}
+
+.upadte-p{
+    position: absolute;
+    margin: 10px -12px;
 }
